@@ -7,26 +7,36 @@ import {
 import type { Status } from "../types"
 
 export function Badges({ statusMap }: { statusMap: Record<string, Status> }) {
-  const unlocked = badgeDefinitions.filter((b: BadgeDef) =>
-    isBadgeUnlocked(b, statusMap)
-  )
-  const stack = [...unlocked].reverse()
+  const unlocked = badgeDefinitions.filter((b) => isBadgeUnlocked(b, statusMap));
+  const stack = [...unlocked].reverse();
 
   return (
     <div className="flex items-center justify-end -space-x-3 mr-2">
-      {stack.map((badge: BadgeDef) => (
-        <BadgeWithTooltip key={badge.name} badge={badge} />
-      ))}
+      {stack.map((badge) => {
+        // Generate random offsets up to ±4px for each badge
+        const offsetX = (Math.random() * 2 - 1) * 4;
+        const offsetY = (Math.random() * 2 - 1) * 4 - 3;
+        return (
+          <BadgeWithTooltip 
+            key={badge.name} 
+            badge={badge} 
+            offsetX={offsetX} 
+            offsetY={offsetY} 
+          />
+        );
+      })}
     </div>
-  )
+  );
 }
 
-function BadgeWithTooltip({ badge }: { badge: BadgeDef }) {
-  const [visible, setVisible] = useState(false)
+function BadgeWithTooltip({ badge, offsetX = 0, offsetY = 0 }: 
+    { badge: BadgeDef; offsetX?: number; offsetY?: number }) {
+  const [visible, setVisible] = useState(false);
 
   return (
     <div
       className="relative inline-block pointer-events-auto"
+      style={{ transform: `translate(${offsetX}px, ${offsetY}px)` }}  // Apply random offset
       onMouseEnter={() => setVisible(true)}
       onMouseLeave={() => setVisible(false)}
       onClick={() => setVisible((v) => !v)}
@@ -50,16 +60,12 @@ function BadgeWithTooltip({ badge }: { badge: BadgeDef }) {
           ].join(" "),
         }}
       />
-
       {visible && (
-        <div
-          className="absolute bottom-full right-0 mb-2 w-40 bg-white text-black text-xs p-2 rounded shadow-lg z-10"
-          onClick={(e) => e.stopPropagation()}
-        >
+        <div className="absolute bottom-full right-0 mb-2 w-40 bg-white text-black text-xs p-2 rounded shadow-lg z-10" onClick={(e) => e.stopPropagation()}>
           <div className="font-semibold truncate">{badge.name}</div>
           <div className="mt-1 leading-tight">{badge.description}</div>
         </div>
       )}
     </div>
-  )
+  );
 }
