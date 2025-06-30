@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react"
+import { useRef, useState } from "react"
 import { toast } from "sonner"
 import { t } from "./constants/strings"
 import { usePersistState } from "./hooks/usePersistState"
@@ -9,9 +9,10 @@ import { Header } from "./components/Header"
 import { LegendFooter } from "./components/LegendFooter"
 import { SiteFooter } from "./components/SiteFooter"
 import { YearRow } from "./components/YearRow"
+import { SettingsModal } from "./components/SettingsModal"
 import { copyImage, downloadImage } from "./utils/imageExport"
 import { getNextStatus } from "./utils/status"
-import type { Status } from "./types"
+import type { Status, Settings } from "./types"
 import { TABLE_VERSION } from "./config"
 
 export const App = () => {
@@ -29,6 +30,11 @@ export const App = () => {
   )
   const wKeyPressed = useKeyPress("w")
   const { track } = useAnalytics(statusMap)
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false)
+  const [settings, setSettings] = usePersistState<Settings>(
+    "settings",
+    { autoFeathers: false, showBadges: true, showHeatmap: true }
+  )
 
   const totalWebfic = allTitles.length
   const readCount = Object.values(statusMap).reduce((sum, s) => {
@@ -85,6 +91,8 @@ export const App = () => {
                 items={bucketed[year] || []}
                 statusMap={statusMap}
                 writtenMap={writtenMap}
+                autoFeathers={settings.autoFeathers}
+                showHeatmap={settings.showHeatmap}
                 wKeyPressed={wKeyPressed}
                 onToggleStatus={(key) =>
                   setStatusMap((prev) => {
@@ -106,7 +114,7 @@ export const App = () => {
               />
             ))}
 
-            <LegendFooter statusMap={statusMap} />
+            <LegendFooter statusMap={statusMap} showBadges={settings.showBadges}/>
             <span className="absolute top-1 right-1 text-[8px] bg-white bg-opacity-75 px-0.5 py-px rounded">
               {TABLE_VERSION}
             </span>
@@ -138,6 +146,13 @@ export const App = () => {
         <button
           type="button"
           className="border rounded-md px-4 py-2 inline-flex"
+          onClick={() => setIsSettingsOpen(true)}
+        >
+          {t("settings")}
+        </button>
+        <button
+          type="button"
+          className="border rounded-md px-4 py-2 inline-flex"
           onClick={handleCopy}
         >
           {t("copyImage")}
@@ -150,6 +165,13 @@ export const App = () => {
           {t("downloadImage")}
         </button>
       </div>
+
+      <SettingsModal
+        isOpen={isSettingsOpen}
+        onClose={() => setIsSettingsOpen(false)}
+        settings={settings}
+        setSettings={setSettings}
+      />
 
       <SiteFooter />
     </div>

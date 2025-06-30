@@ -4,18 +4,24 @@ import { Badges } from "./Badges"
 
 export function LegendFooter({
   statusMap,
+  showBadges,
 }: {
   statusMap: Record<string, Status>
+  showBadges: boolean
 }) {
   return (
-    <div className="flex w-full items-center justify-start ml-2 mt-1 p-2 text-xs">
+    <div
+      className={`flex w-full items-center ${
+        showBadges ? "justify-start ml-2" : "justify-center"
+      } mt-1 p-2 text-xs relative`}
+    >
       {/* legend dots */}
-      {["completed", "inProgress", "dropped", "none"].map((key, i) => {
+      {['completed', 'inProgress', 'dropped', 'none'].map((key, i) => {
         const color = [
-          "bg-green-500",
-          "bg-yellow-500",
-          "bg-red-500",
-          "border border-gray-400",
+          'bg-green-500',
+          'bg-yellow-500',
+          'bg-red-500',
+          'border border-gray-400',
         ][i]
         return (
           <span
@@ -28,9 +34,11 @@ export function LegendFooter({
         )
       })}
       {/* badges to the right */}
-      <div className="absolute bottom-0 right-0 flex items-center -space-x-2 px-2">
-        <Badges statusMap={statusMap} />
-      </div>
+      {showBadges && (
+        <div className="absolute bottom-0 right-0 flex items-center -space-x-2 px-2">
+          <Badges statusMap={statusMap} />
+        </div>
+      )}
     </div>
   )
 }

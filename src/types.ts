@@ -8,3 +8,9 @@ export type WebficItem = {
 }
 
 export type Data = Record<string, WebficItem[]>
+
+export type Settings = {
+  autoFeathers: boolean
+  showBadges: boolean
+  showHeatmap: boolean
+}

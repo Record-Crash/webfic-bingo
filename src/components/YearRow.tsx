@@ -7,6 +7,8 @@ interface Props {
   items: WebficItem[]
   statusMap: Record<string, Status>
   writtenMap: Record<string, boolean>
+  autoFeathers: boolean
+  showHeatmap: boolean
   wKeyPressed: boolean
   onToggleStatus: (key: string) => void
   onToggleWritten: (key: string) => void
@@ -17,6 +19,8 @@ export function YearRow({
   items,
   statusMap,
   writtenMap,
+  autoFeathers,
+  showHeatmap,
   wKeyPressed,
   onToggleStatus,
   onToggleWritten,
@@ -33,7 +37,7 @@ export function YearRow({
             item={item}
             status={statusMap[getWebficTitle(item)] ?? "none"}
             written={!!writtenMap[getWebficTitle(item)]}
-            wKeyPressed={wKeyPressed}
+            wKeyPressed={autoFeathers ? true : wKeyPressed}
             onToggleStatus={onToggleStatus}
             onToggleWritten={onToggleWritten}
           />
