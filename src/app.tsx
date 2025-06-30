@@ -33,7 +33,7 @@ export const App = () => {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false)
   const [settings, setSettings] = usePersistState<Settings>(
     "settings",
-    { autoFeathers: false, showBadges: true, showHeatmap: true }
+    { autoFeathers: false, showBadges: true, showHeatmap: false }
   )
 
   const totalWebfic = allTitles.length

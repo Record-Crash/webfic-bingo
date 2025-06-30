@@ -38,6 +38,7 @@ export function YearRow({
             status={statusMap[getWebficTitle(item)] ?? "none"}
             written={!!writtenMap[getWebficTitle(item)]}
             wKeyPressed={autoFeathers ? true : wKeyPressed}
+            showHeatmap={showHeatmap}
             onToggleStatus={onToggleStatus}
             onToggleWritten={onToggleWritten}
           />
