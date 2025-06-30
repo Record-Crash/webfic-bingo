@@ -1,13 +1,14 @@
-import type { Status } from "../types"
+import type { Status, WebficItem } from "../types"
 import { WebficCell } from "./WebficCell"
-import { getWebficTitle } from "../../webfic-data"
-import type { WebficItem } from "../../webfic-data"
+import { getWebficTitle } from "../utils/webfic"
 
 interface Props {
   yearLabel: string
   items: WebficItem[]
   statusMap: Record<string, Status>
   writtenMap: Record<string, boolean>
+  autoFeathers: boolean
+  showHeatmap: boolean
   wKeyPressed: boolean
   onToggleStatus: (key: string) => void
   onToggleWritten: (key: string) => void
@@ -18,6 +19,8 @@ export function YearRow({
   items,
   statusMap,
   writtenMap,
+  autoFeathers,
+  showHeatmap,
   wKeyPressed,
   onToggleStatus,
   onToggleWritten,
@@ -28,19 +31,23 @@ export function YearRow({
         <span className="text-sm md:text-base text-center">{yearLabel}</span>
       </div>
       <div className="flex">
-        {items.slice(0, 12).map(item => (
+        {items.slice(0, 12).map((item) => (
           <WebficCell
             key={getWebficTitle(item)}
             item={item}
             status={statusMap[getWebficTitle(item)] ?? "none"}
             written={!!writtenMap[getWebficTitle(item)]}
-            wKeyPressed={wKeyPressed}
+            wKeyPressed={autoFeathers ? true : wKeyPressed}
+            showHeatmap={showHeatmap}
             onToggleStatus={onToggleStatus}
             onToggleWritten={onToggleWritten}
           />
         ))}
         {Array.from({ length: Math.max(0, 12 - items.length) }).map((_, i) => (
-          <div key={i} className="h-16 md:h-20 w-20 md:w-24 border-l bg-gray-50" />
+          <div
+            key={i}
+            className="h-16 md:h-20 w-20 md:w-24 border-l bg-gray-50"
+          />
         ))}
         <div className="w-0 h-16 md:h-20" />
       </div>

@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { t } from "../strings"
+import { t } from "../constants/strings"
 import { Modal } from "./Modal"
 
 export function SiteFooter() {
@@ -16,8 +16,7 @@ export function SiteFooter() {
           className="underline"
         >
           {t("website")}
-        </a>
-        {" "}
+        </a>{" "}
         <a
           href="https://github.com/recordcrash/webfic-sedai"
           target="_blank"
@@ -38,6 +37,16 @@ export function SiteFooter() {
       <Modal isOpen={isChangelogOpen} onClose={() => setIsChangelogOpen(false)}>
         <h2 className="text-2xl font-bold mb-4">{t("changelog")}</h2>
         <div className="max-h-[60vh] overflow-y-auto space-y-6 text-left">
+          <section>
+            <h3 className="font-semibold">2025-06-30</h3>
+            <ul className="list-disc pl-5">
+              <li>Added three new settings and their menu:
+                <ul className="list-disc list-inside space-y-1"><li>Badges: like small achievements that show up bottom right. Send me suggestions for more if you can find me</li>
+                <li>Writer Mode: adds small feathers to works to mean "I wrote this". You can use the W key for this, but for mobile you kind of need this</li>
+                <li>Heatmap: based on real analytics, shows which works are selected (not liked!) more often</li></ul>
+              </li>
+            </ul>
+          </section>
           <section>
             <h3 className="font-semibold">2025-06-26</h3>
             <ul className="list-disc pl-5">
