@@ -1,7 +1,6 @@
 const EN = {
-  title: "Ages of Webfic",
+  title: "Webfic Bingo",
   subtitle: "Click to select webfics you have read",
-  website: "webfic.recordcrash.com",
   websiteAuthor: "Makin",
   websiteName: "Record Crash",
   readCount: "I have read {{count}}/{{total}} webfics",
@@ -24,7 +23,7 @@ const EN = {
   otherProducts: "Other products by the author: ",
   changelog: "Changelog",
   settings: "Settings",
-  autoFeathers: "Writer mode (adds feathers instead of toggling states)",
+  autoFeathers: "Writer mode (adds quills instead of toggling states)",
   showBadges: "Show badges",
   showHeatmap: "Show heatmap",
   completed: "Caught up",
