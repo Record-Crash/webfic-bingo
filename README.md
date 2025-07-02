@@ -1,10 +1,10 @@
-# Ages of Webfic
+# Webfic Bingo
 
-[![Deploy webfic-sedai](https://github.com/recordcrash/webfic-sedai/actions/workflows/main.yml/badge.svg)](https://github.com/recordcrash/webfic-sedai/actions/workflows/main.yml)
+[![Deploy site](https://github.com/recordcrash/webfic-bingo/actions/workflows/main.yml/badge.svg)](https://github.com/recordcrash/webfic-bingo/actions/workflows/main.yml)
 
-Check out [Ages of Webfic](https://webfic.recordcrash.com).
+Check out [Webfic Bingo](https://webfic.recordcrash.com).
 
-This is a fork of [Anime Sedai](https://anime-sedai.egoist.dev/). In this one, you can fill in a list of popular webfic you've read to share instead of anime you've watched.
+This is based on [Anime Sedai](https://github.com/egoist/anime-sedai). In this one, you can fill in a list of popular webfic you've read to share instead of anime you've watched.
 
 ## Usage
 
