@@ -15,7 +15,7 @@ export function SiteFooter() {
           rel="noreferrer"
           className="underline"
         >
-          {t("website")}
+          {t("websiteName")}
         </a>{" "}
         <a
           href="https://github.com/recordcrash/webfic-sedai"
