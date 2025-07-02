@@ -1,5 +1,5 @@
 const EN = {
-  title: "Ages of Webfic",
+  title: "Webfic Bingo",
   subtitle: "Click to select webfics you have read",
   websiteAuthor: "Makin",
   websiteName: "Record Crash",
