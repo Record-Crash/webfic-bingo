@@ -18,7 +18,7 @@ export function SiteFooter() {
           {t("websiteName")}
         </a>{" "}
         <a
-          href="https://github.com/recordcrash/webfic-sedai"
+          href="https://github.com/recordcrash/webfic-bingo"
           target="_blank"
           rel="noreferrer"
           className="underline"
