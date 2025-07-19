@@ -38,6 +38,12 @@ export function SiteFooter() {
         <h2 className="text-2xl font-bold mb-4">{t("changelog")}</h2>
         <div className="max-h-[60vh] overflow-y-auto space-y-6 text-left">
           <section>
+            <h3 className="font-semibold">2025-07-19</h3>
+            <ul className="list-disc pl-5">
+              <li>Fixed buttons in mobile</li>
+            </ul>
+          </section>
+          <section>
             <h3 className="font-semibold">2025-06-30</h3>
             <ul className="list-disc pl-5">
               <li>Added three new settings and their menu:
