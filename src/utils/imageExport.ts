@@ -23,7 +23,7 @@ export async function downloadImage(wrapper: HTMLDivElement | null) {
   const url = URL.createObjectURL(blob)
   const a = document.createElement("a")
   a.href = url
-  a.download = "ages-of-webfic.png"
+  a.download = "webfic-bingo.png"
   a.click()
   URL.revokeObjectURL(url)
 }

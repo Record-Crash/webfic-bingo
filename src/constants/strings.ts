@@ -1,6 +1,7 @@
 const EN = {
   title: "Webfic Bingo",
   subtitle: "Click to select webfics you have read",
+  website: (import.meta as any).env?.VITE_SITE_URL || "https://webfic.recordcrash.com",
   websiteAuthor: "Makin",
   websiteName: "Record Crash",
   readCount: "I have read {{count}}/{{total}} webfics",
